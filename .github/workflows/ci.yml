@@ -1,0 +1,34 @@
+name: Verificarea Listei de Fructe
+
+# Cand sa porneasca robotul?
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Ce sa faca robotul?
+jobs:
+  testare:
+    runs-on: ubuntu-latest # Robotul foloseste un calculator cu Linux (Ubuntu)
+
+    steps:
+      - name: Descarca codul din repo
+        uses: actions/checkout@v3 # Comanda speciala care copiaza fisierele tale pe robot
+
+      - name: Configureaza Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Ruleaza scriptul de verificare
+        run: python verifică_fructe.py
+
+      - name: Creeaza o arhiva cu fructe
+        run: zip fructe.zip fructe.txt legume.txt
+
+      - name: Upload arhiva ca artefact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pachet-fructe-si-legume
+          path: fructe.zip
