@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Descarca codul din repo
-        uses: actions/checkout@v3 # Comanda speciala care copiaza fisierele tale pe robot
+        uses: actions/checkout@v4 # Comanda speciala care copiaza fisierele tale pe robot
 
       - name: Configureaza Python
         uses: actions/setup-python@v4
@@ -28,7 +28,7 @@ jobs:
         run: zip fructe.zip fructe.txt legume.txt
 
       - name: Upload arhiva ca artefact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pachet-fructe-si-legume
           path: fructe.zip
